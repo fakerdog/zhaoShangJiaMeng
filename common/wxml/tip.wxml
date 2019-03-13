@@ -1,0 +1,4 @@
+<view class="tip" style="display:{{wxss_tip}}">
+    <button catchtap="tipTap" class="tip-left" data-time="{{tipTime}}" hoverClass="none" openType="{{tipType}}" plain="true">{{tipTitle}}</button>
+    <button catchtap="tipClose" class="tip-right" data-time="{{tipTime}}" hoverClass="none" plain="true"> x </button>
+</view>

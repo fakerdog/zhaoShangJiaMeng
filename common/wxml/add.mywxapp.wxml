@@ -1,0 +1,4 @@
+<view class="box add-mywxapp" wx:if="{{isShowAddMyApp}}">
+    <image mode="widthFix" src="/images/add_mywxapp.png" style="width"></image>
+    <view bindtap="closeAddWxApp" class="close"></view>
+</view>

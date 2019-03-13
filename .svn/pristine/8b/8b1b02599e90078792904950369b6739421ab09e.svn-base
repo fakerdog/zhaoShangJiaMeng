@@ -1,0 +1,28 @@
+/* pages/advertisement/advertisement.wxss */
+Page{
+  box-sizing: border-box;
+  background-color:#F0F0F0;
+}
+view{
+  font-size: 32rpx;
+  background-color: #fff;
+}
+.receiveDetail:nth-child(1){
+  margin-top: 30rpx;
+}
+.receiveDetail{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100rpx;
+  margin-bottom: 30rpx;
+}
+.avatarurl{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.top_wrap{
+  margin-top: 30rpx;
+}

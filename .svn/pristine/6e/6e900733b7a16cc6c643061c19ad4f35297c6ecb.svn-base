@@ -1,0 +1,227 @@
+// pages/bagDetail/bagDetail.js
+const server = require("../../utils/server.js");
+const util = require("../../utils/util.js");
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    bagLaunch: "",
+    hasTake: 567,
+    showAssistModule: false,
+    askforModule: false,
+    sendModule:true,
+    restMoney: 306,
+    sponsorComp: "",
+    notcollected: false,
+    showFirstModule: false,
+    activeid: "",
+    enoughThe: false,
+    words: [
+    ],
+    description: "",
+    systemword: "颦"
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+
+  onLoad: function (options) {
+    
+    server.getLuckyDrawHead(res => {
+      var head = res.data.head;
+      if (head) {
+        util.getRandomArrayElementsHead(head, 8, res => {
+          this.setData({
+            drawhead: res
+          })
+        })
+      }
+    })
+
+    var activeid = Number(options.activeid);
+    this.data.activeid = activeid
+    this.data.friendopenid = options.targetid;
+    var keyword = options.tapword;
+    console.log(options)
+    if (!friendopenid) {
+      friendopenid = ""
+    }
+    //获取当前登录用户
+    server.getUserInfo(friendopenid, activeid, res => {
+      console.log("用户信息:");
+      console.log(res);
+      this.data.isnew = res.isnew;
+      // var myopenid = app.globalData.openid;
+      // if (!targetid || targetid == myopenid) { 
+      //   targetid = app.globalData.openid;
+      //   this.setData({
+      //     targetid: targetid,
+      //     selfFlag: true
+      //   });
+      // } else {
+      //   this.setData({
+      //     targetid: targetid,
+      //     selfFlag: false
+      //   });
+      // }
+      var userInfo = app.globalData.userInfo;
+
+      // 获取活动的详细信息
+      server.getactiveDetail(activeid, res => {
+        var res = res.data.data;
+        console.log(res);
+        this.data.activityStatus = res.status;
+        var words = (res.words).split(",");
+        this.setData({
+          bannerurl: res.bannerurl,
+          sponsorDescription: res.sponsorDescription,
+          activityName: res.activityName,
+          sponsorAppname: res.sponsorAppname,
+          description: res.description,
+        })
+
+        //获取用户文字的个数
+        server.getactiveUserDetail(activeid, res => {
+          console.log(res);
+          var words = res.data.data.words;
+          this.setData({
+            words: words
+          })
+          if (this.data.activityStatus == 0 && res.data.data.word != "") {
+            this.setData({
+              showFirstModule: true,
+              systemword: res.data.data.word
+            })
+          }
+          if (options.sharetype) {
+            var sharetype = options.sharetype;
+            // if (!this.data.showFirstModule){
+            this.setData({
+              showAssistModule: true
+            })
+            console.log(sharetype)
+            switch (sharetype) {
+              case "askfor":
+                this.setData({
+                  askforModule: true,
+                  askword: keyword
+                })
+                break;
+              case "send":
+                this.setData({
+                  sendModule: true,
+                  sendword: keyword
+                })
+                break;
+            }
+
+            // }
+          }
+        })
+      })
+    });
+
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function (e) { },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () { },
+  //赏给你
+  accept: function () {
+    this.setData({
+      showFirstModule: false
+    })
+    var friendopenid = this.data.friendopenid;
+    var activeid = this.data.activeid;
+    var word = this.data.askword;
+    server.giveWordApiFromMe(friendopenid, activeid, word, res => {
+      if (res.data.data == 0) {
+        //字数余额不足
+      } else {
+        //赠送
+      }
+    })
+  },
+
+  //愉快收下
+  hapytake:function(){
+    var friendopenid = this.data.friendopenid;
+    var activeid = this.data.activeid;
+    var word = this.data.sendword;
+    server.getWordApi(friendopenid,activeid,word,res=>{
+
+    })
+    this.setData({
+      sendModule:false
+    })
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (e) {
+    // console.log(e)
+    var activeid = this.data.activeid;
+    console.log(activeid);
+    var userhasnum = e.target.dataset.tapcla;
+    var tapword = e.target.dataset.tapword;
+    server.giveFriApi(activeid, tapword, res => {
+    })
+
+    var openid = "";
+    var sharetype;
+    if (userhasnum == 0) {
+      sharetype = "askfor"
+      var title = "求助！我还差一个字就能领红包了"
+    } else {
+      sharetype = "send"
+      var title = "你要的东西都在这了"
+    }
+    return {
+      imageUrl: "",
+      title: title,
+      path: '/pages/bagDetail/bagDetail?sharetype=' + sharetype + '&tapword=' + tapword + '&activeid=' + activeid + '&targetid' + openid
+    }
+  }
+})

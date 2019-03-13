@@ -1,0 +1,67 @@
+//app.js
+App({
+  //服务器地址
+  CDN_URL: "https://zuji.weixinpy.com/redBagWar/",
+  HTTP_SERVER: "https://wxapp.xiguazuji.com/",
+  APP_ID: "wx83b605f01d2c2b7b",
+  //缓存
+  CACHE_PREFIX: "_redBagWar",
+  onLaunch: function () {
+    // 展示本地存储能力
+    var logs = wx.getStorageSync('logs') || []
+    logs.unshift(Date.now())
+    wx.setStorageSync('logs', logs)
+  },
+  //获取用户信息
+  getUserInfo: function (cb) {
+    //已经登录，获取用户基本信息
+    if (this.globalData.openid) {
+      cb(this.globalData.userInfo);
+    } else {
+      // 登录，获取用户openid
+      wx.login({
+        success: res => {
+          //从开发服务器获取openid
+          var code = res.code;
+          wx.request({
+            url: this.HTTP_SERVER + 'bm/JSession/jscode2session.htm',
+            method: "POST",
+            data: {
+              appId: this.APP_ID,
+              jscode: code
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            success: res => {
+              //回调
+              if (typeof cb === "function") {
+                this.globalData.userInfo = {};
+                this.prepareGlobalData(res.data);
+                cb(res);
+              }
+            },
+            fail: function (res) {
+              console.log("jscode2session fail");
+            },
+            //完成一定会执行
+            complete: res => {
+
+            }
+          });
+        }
+      });
+    }
+  },
+
+  //全局数据
+  prepareGlobalData: function (resData) {
+    var userInfo = resData.data;
+    this.globalData.openid = userInfo.openid;//判断用户是否登录
+    this.globalData.sessionkey = resData.sessionkey;
+    this.globalData.userInfo = userInfo;//用户信息
+  },
+  globalData: {
+    userInfo: null
+  }
+})

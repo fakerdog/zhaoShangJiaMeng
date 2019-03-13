@@ -1,0 +1,6 @@
+<!--pages/gotredpacket/gotredpacket.wxml-->
+<view class='receiveDetail' wx:for="{{lingquUser}}">
+    <image class='avatarurl' src='{{item.avatarurl}}'></image>
+    <view>{{item.nickname}}</view>
+    <view>领取：{{item.money}}元</view>
+</view>

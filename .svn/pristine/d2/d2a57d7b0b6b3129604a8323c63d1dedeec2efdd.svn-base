@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<!-- 头部 -->
+<view class='oneday'>
+  <view class='oneday-welfare'>
+    每日福利
+  </view>
+  <view class='oneday-help'>
+    帮助 | 分享
+   </view>
+</view>
+
+<!-- 中间部分 -->
+<view class='activity'>
+  <image class="activity-image-food" src='../../images/bg-top.jpg' ></image>
+  <view class='activity-synopsis'>
+    <view class="activity-sponsor">
+      洋葱daily 赞助
+    </view>
+    <view class='activity-prize'>
+      奖品 : 小爱同学智能人工蓝牙WIFI音响 X1
+    </view>
+    <view class='activity-time'>
+      02月28日 10:00 已有1000人领取
+    </view>
+  </view>
+</view>
+<view class='activity'>
+  <image class="activity-image-food" src='../../images/bg-top.jpg' ></image>
+  <view class='activity-synopsis'>
+    <view class="activity-sponsor">
+      洋葱daily 赞助
+    </view>
+    <view class='activity-prize'>
+      奖品 : 小爱同学智能人工蓝牙WIFI音响 X1
+    </view>
+    <view class='activity-time'>
+      02月28日 10:00 已有1000人领取
+    </view>
+  </view>
+</view>
+
+<view class='activity'>
+  <image class="activity-image-food" src='../../images/bg-top.jpg' ></image>
+  <view class='activity-synopsis'>
+    <view class="activity-sponsor">
+      洋葱daily 赞助
+    </view>
+    <view class='activity-prize'>
+      奖品 : 小爱同学智能人工蓝牙WIFI音响 X1
+    </view>
+    <view class='activity-time'>
+      02月28日 10:00 已有1000人领取
+    </view>
+  </view>
+</view>
+
+<view class='activity'>
+  <image class="activity-image-food" src='../../images/bg-top.jpg' ></image>
+  <view class='activity-synopsis'>
+    <view class="activity-sponsor">
+      洋葱daily 赞助
+    </view>
+    <view class='activity-prize'>
+      奖品 : 小爱同学智能人工蓝牙WIFI音响 X1
+    </view>
+    <view class='activity-time'>
+      02月28日 10:00 已有1000人领取
+    </view>
+  </view>
+</view>
+
+

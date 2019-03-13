@@ -1,0 +1,71 @@
+<!--pages/bagDetail/bagDetail.wxml-->
+<view class="top-banner">
+  <image src='{{bannerurl}}' class="banner-image"></image>
+</view>
+<view style='font-weight:700;padding-left:20rpx;'>{{activityName}}</view>
+<view class='receive-person'>
+  <view wx:for="{{drawhead}}" class='receive-wrap'>
+    <image src='{{item.imgUrl}}'></image>
+  </view>
+</view>
+<view class='detail-wrap'>
+  <view>已领￥{{hasTake}}</view>
+  <view style='margin:0 10rpx;'>|</view>
+  <view>剩余￥{{restMoney}}</view>
+</view>
+<view class='sponsor' wx:if="{{sponsorComp}}">
+  <view class='sponsor-text'>赞助商</view>
+  <view style='flex:1'>{{sponsorAppname}}</view>
+</view>
+<view class='zhanwei'></view>
+<view class='description'>{{sponsorDescription}}</view>
+<view class='zhanwei'></view>
+<view class='description-view'>{{description}}</view>
+<!-- <view class="word-wrap">
+  <button wx:for="{{wordArr}}" class='{{item.hasnum>0?"text-wrap":"textMask"}}' style='position:relative' data-tapcla="{{item.hasnum}}" data-tapword="{{item.text}}" open-type="share">
+    <text>{{item.text}}</text>
+    <view class='count-card'>{{item.hasnum}}</view>
+  </button>
+</view> -->
+<view class='footer-btn'>
+<view class="word-wrap">
+  <button wx:for="{{words}}" class='{{item.hasnum>0?"text-wrap":"textMask"}}' style='position:relative' data-tapcla="{{item.hasnum}}" data-tapword="{{item.text}}" open-type="share">
+    <text>{{item}}</text>
+    <view class='count-card'>{{item.hasnum}}</view>
+  </button>
+</view>
+  <button disabled="{{notcollected}}" class="lingqu-btn">领取红包</button>
+</view>
+<view style='height:150rpx'></view>
+
+
+<!-- 第一次进入送字弹窗 -->
+<view class="mask" wx:if="{{showFirstModule}}">
+  <view class="startModule">
+    <view class="tiptext">系统送您一个字</view>
+    <image src='{{firstinSendImg}}' style='width:200rpx;height:200rpx;' bindload="handleLoad"></image>
+    <button type="primary" class="ready" bindtap='accept'>愉快收下</button>
+  </view>
+</view>
+
+<!-- 助力弹窗 -->
+<view class="mask" wx:if="{{showAssistModule}}">
+  <view class="startModulec">
+    <block wx:if="{{askforModule}}">
+      <view class='userAvatar'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="ask-title">您的好友想让你送他</view>
+      <view class='ask-word'>{{keyword}}</view>
+      <button type="primary" class="ask-button" bindtap='accept'>赏给他</button>
+    </block>
+    <block wx:elseif="{{sendModule}}">
+      <view class='userAvatar'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="ask-title">您的好友送了您一张</view>
+      <view class='ask-word'>{{keyword}}</view>
+      <button type="primary" class="ask-button" bindtap='accept'>愉快收下</button>
+    </block>
+  </view>
+</view>

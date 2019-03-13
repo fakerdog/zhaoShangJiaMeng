@@ -1,0 +1,30 @@
+const app=getApp();
+
+//获取全部活动的数据
+function getAllActiveData(cb) {
+  wx.showLoading({
+    title: '数据加载中...',
+    mask: true
+  });
+  var flag = false;
+  wx.request({
+    url: app.CDN_URL + 'allActive.json',
+    data: {},
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success: function (res) {
+      if (typeof cb === "function") {
+        cb(res);
+      }
+    },
+    fail: function (res) { },
+    complete: function (res) {
+      wx.hideLoading();
+    }
+  });
+}
+
+module.exports={
+  getAllActiveData: getAllActiveData
+}

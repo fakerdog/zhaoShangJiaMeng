@@ -1,0 +1,14 @@
+
+
+
+.zhanwei{
+  width: 100vh;
+  height: 24rpx;
+  background-color: #F0F0F0;
+}
+.userAvatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}

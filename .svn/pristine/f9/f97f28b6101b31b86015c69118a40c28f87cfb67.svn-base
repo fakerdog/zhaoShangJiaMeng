@@ -1,0 +1,7 @@
+<!--pages/advertisement/advertisement.wxml-->
+<view class='receiveDetail' wx:for="{{minis}}" data-index="{{index}}" bindtap='showCodeImage'>
+    <image class='avatarurl' src='{{item.logo}}' data-index="{{index}}" bindtap='showCodeImage'></image>
+    <view data-index="{{index}}" bindtap='showCodeImage'>{{item.name}}</view>
+    <view data-index="{{index}}" bindtap='showCodeImage'>{{item.description}} ></view>
+</view>
+

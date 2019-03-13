@@ -1,0 +1,232 @@
+/* pages/bagDetail/bagDetail.wxss */
+view{
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+.closeFirstModule{
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  right:-24rpx;
+  top: -24rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+button{
+  margin: 0;
+}
+.top-banner{
+  width: 100%;
+  height: auto;
+}
+.banner-image{
+  width: 100%;
+  height: 332rpx;
+}
+.receive-person{
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+.receive-wrap{
+  width: 74rpx;
+  height: 74rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 6rpx;
+}
+.receive-wrap image{
+  width: 100%;
+  height: 100%;
+}
+.detail-wrap{
+  display: flex;
+  justify-content: center;
+  color: green;
+  margin-top: 6rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #F0F0F0;
+}
+.detail-wrap view{
+  font-size: 28rpx;
+}
+.sponsor{
+  display: flex;
+  margin: 8rpx 0;
+  padding-left: 20rpx;
+}
+.sponsor-text{
+  flex:2;
+  font-weight: 700;
+}
+.description-view{
+  padding: 10rpx 20rpx;
+}
+.description{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #FFF6E5;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+.word-wrap{
+  display: flex;
+  justify-content: center;
+  margin-top: 10rpx;
+}
+.word-wrap image{
+  width: 120rpx;
+  height: 120rpx;
+  margin-left:6rpx;
+}
+.count-card{
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  right:0rpx;
+  top:0rpx;
+  background-color: #FFC85E;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36rpx;
+  font-size: 24rpx;
+}
+
+/* 第一次进入弹窗样式 */
+.mask{
+  width: 100vw;
+  height: 100vh;
+  position:fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.startModule{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 452rpx;
+  height: 480rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 12rpx;
+}
+.startModulec{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 452rpx;
+  height: 480rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 12rpx;
+}
+.tiptext{
+  margin-top: 10rpx;
+  font-weight: bold;
+  font-size: 34rpx;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.ready{
+  width:245rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+}
+.footer-btn{
+  position: fixed;
+  height: 240rpx;
+  background-color: #fff;
+  bottom: 0;
+  width: 100vw;
+}
+.lingqu-btn{
+  width: 80%;
+  margin-top: 20rpx;
+  background-color: #CF4F42;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lingqu-btn2{
+  width: 80%;
+  margin-top: 20rpx;
+  background-color: #ccc;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-wrap{
+  margin-left:10rpx;
+  background-color: #fff;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: 700;
+  border: 1px solid #FFC85E;
+}
+.textMask{
+  margin-left:10rpx;
+  padding: 0;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: 700;
+  border: 1px solid #FFF6E5;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+button::after{
+  border: none;
+}
+.userAvatar{
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  left: 160rpx;
+  top: -60rpx;
+}
+.ask-title{
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-top: 66rpx;
+}
+.ask-word{
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 26rpx;
+  font-size: 100rpx;
+  font-weight: 700;
+  text-align: center;
+  line-height: 200rpx;
+  border: 1px solid #FFC85E;
+}
+.ask-button{
+  width:245rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  margin-top: 32rpx;
+}
+.home-view{
+  position: fixed;
+  width:88rpx;
+  height: 106rpx;
+  right: 0rpx;
+  top: 40%;
+}

@@ -1,0 +1,114 @@
+/* pages/draw/draw.wxss */
+page {
+  background-color: #f0f0f0;
+}
+.editprize {
+  font-size: 26rpx;
+  color: #616161;
+  letter-spacing: 3rpx;
+  text-align: left;
+  height: 100rpx;
+  padding-left: 40rpx;
+  line-height: 100rpx;
+}
+.draw-images{
+  position: relative;
+}
+.draw-prizeimg{
+  height: 400rpx;
+  width: 100%;
+}
+.draw-prizeimg image{
+  width: 100%;
+  height: 100%;
+}
+.draw-prizebut{
+  background-color: #fff;
+  letter-spacing: 3rpx;
+  border: 1rpx solid #616161;
+  font-size: 26rpx;
+  height: 58rpx;
+  line-height:58rpx;
+  width: 200rpx;
+  text-align: center;
+  color: #616161;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+.draw-editprize{
+  background-color: #fff;
+}
+.draw-prize{
+  background-color: #fff;
+  height: 100rpx;
+  margin-left: 40rpx;
+  letter-spacing: 3rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: right;
+  position: relative;
+}
+.draw-prizetext{
+  height: inherit;
+  display: inline-block;
+}
+.draw-prizeinp {
+  height: inherit;
+  text-align: right;
+  display: inline-block;
+  line-height: 80rpx;
+  flex: 1;
+  margin-left: 10rpx;
+  margin-right: 30rpx;
+}
+.draw-prizege{
+  margin-right: 30rpx;
+  margin-left: -20rpx;
+}
+.editprizeno{
+  position:absolute;
+  right: 30rpx;
+}
+.editprizeviar{
+  background-color: #fff;
+  height: 270rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: -1;
+}
+.editprizearea{
+  background-color: #fff;
+  width: 100%;
+  height: 250rpx;
+  padding-top: 20rpx;
+  /* padding: 20rpx 20rpx; */
+  /* initial-letter: 30rpx; */
+  /* padding: 10rpx 20rpx; */
+}
+.editprize-bottom{
+  background-color: #fff;
+  height: 200rpx;
+  margin-top: 50rpx;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: 999;
+}
+.editprize-todraw{
+  color: white;
+  letter-spacing: 3rpx;
+  background-color: #d15142;
+  width: 100%;
+  height: 110rpx;
+  margin-top: 20rpx;
+  line-height: 110rpx;
+  text-align: center;
+  font-size: 38rpx;
+}
+

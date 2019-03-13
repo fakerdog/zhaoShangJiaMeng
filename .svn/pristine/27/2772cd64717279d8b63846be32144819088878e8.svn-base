@@ -1,0 +1,178 @@
+// pages/bagDetail/bagDetail.js
+const server=require("../../utils/server.js");
+const util=require("../../utils/util.js")
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    bagLaunch:"南京笛声网络科技有限公司",
+    hasTake:567,
+    // showAssistModule:true,
+    // askforModule:true,
+    restMoney:306,
+    sponsorComp:"阿里巴巴",
+    // notcollected:true,
+    showFirstModule:false,
+    firstinSendImg:"../../images/fu1.png",
+    firstin:false,
+    activeid:1,
+    wordArr:[
+      {text:"中",hasnum:1},
+      {text:"国",hasnum:3,},
+      {text:"移",hasnum:0,},
+      {text:"动",hasnum:3,},
+      {text:"呦",hasnum:0,},
+    ],
+    description:"环滁皆山也。其西南诸峰，林壑尤美，望之蔚然而深秀者，琅琊也。山行六七里，渐闻水声潺潺而泻出于两峰之间者，酿泉也。峰回路转，有亭翼然临于泉上者，醉翁亭也。"
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    server.getLuckyDrawHead(res => {
+      var head = res.data.head;
+      if (head) {
+        util.getRandomArrayElementsHead(head, 8, res => {
+          console.log(res);
+          this.setData({
+            drawhead: res
+          })
+        })
+      }
+    })
+    if(this.data.firstin){
+      this.setData({
+        showFirstModule:true,
+      })
+    }
+
+    //参数中 被助力人id
+    var targetid = options.targetid;
+    var sharetype=options.sharetype;
+    // var keyword=options.tapword;
+    var keyword="好";
+    this.setData({
+      keyword:keyword
+    })
+    if (targetid) {
+      this.setData({
+        targetid: targetid
+      });
+    }
+    //活动id
+    var promotid = options.activerid;
+    this.setData({
+      promotid: promotid
+    });
+    //获取当前登录用户
+    app.getUserInfo(res => {
+      var myopenid = app.globalData.openid;
+      if (!targetid || targetid == myopenid) { //没有被助力人或者当前用户，就是自己
+        targetid = app.globalData.openid;
+        this.setData({
+          targetid: targetid,
+          selfFlag: true
+        });
+      } else {
+        this.setData({
+          targetid: targetid,
+          selfFlag: false
+        });
+      }
+      var userInfo = app.globalData.userInfo;
+
+    });
+  if(this.data.selfFlag){
+    wx.showModal({
+      content: '自己不能赠送自己哦',
+    })
+  }else{
+    if(sharetype=="askfor"){
+    this.setData({
+      showAssistModule:true,
+      askforModule:true
+    })
+    }else if(sharetype=="send"){
+      thiss.setData({
+        showAssistModule: true,
+        sendModule:true
+      })
+    }
+  }
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function (e) {
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  },
+  // 接受系统第一次赠送
+  accept:function(){
+    this.setData({
+      showFirstModule:false
+    })
+  },
+
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (e) {
+    var activeid=this.data.activeid;
+    var userhasnum=e.target.dataset.tapcla;
+    var tapword=e.target.dataset.talpword;
+    var openid="tfd3213";
+    var sharetype;
+    if(userhasnum==0){
+      sharetype="askfor"
+    }else{
+      sharetype="send"
+    }
+      return {
+        imageUrl: "",
+        title: '就差你一助攻！用你友谊的小手帮帮我！你也能领红包！',
+        path: '/pages/bagDetail/bagDetail?sharetype=' + sharetype +'&tapword=' + tapword+'&activeid='+activeid+'&targetid'+openid
+      }
+  }
+})

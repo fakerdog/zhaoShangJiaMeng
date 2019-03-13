@@ -1,0 +1,57 @@
+page{
+  background-color: #F0F0F0;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.oneday{
+  width: 100%;
+  height: 100rpx;
+  display:flex;
+  position: relative;
+}
+.oneday  view{
+  line-height: 100rpx;
+  height: 100rpx;
+}
+.oneday-welfare{
+  font-size: 36rpx;
+  color:#D15142;
+  font-weight: bold;
+}
+.oneday-help{
+  font-size: 28rpx;
+  color: #616161;
+  position: absolute;
+  right: 20rpx;
+  letter-spacing: 3rpx;
+}
+.activity{
+  border-radius: 15rpx;
+  background-color: #ffff;
+  margin-bottom: 40rpx;
+}
+.activity-image-food{
+  width: 100%;
+  height: 350rpx;
+}
+.activity-synopsis{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+.activity-synopsis view{
+  margin: 15rpx auto;
+}
+.activity-sponsor{
+   color:#D15142;
+   font-size: 30rpx;
+   font-weight: 600;
+}
+.activity-prize{
+  font-size: 36rpx;
+}
+.activity-time{
+  font-size: 24rpx;
+  color: #616161;
+}

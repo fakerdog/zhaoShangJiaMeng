@@ -1,0 +1,49 @@
+<view class='editprize'>
+  设置奖项
+</view>
+<view class='draw-images'>
+  <view class='draw-prizeimg'>
+    <image src='{{imgurl}}'></image>
+  </view>
+  <view class='draw-prizebut' bindtap='updatePrizeimg'>
+    更换红包图片
+  </view>
+  <view class='draw-editprize'>
+    <view class='draw-prize'>
+      <text class='draw-prizetext'>奖品名称</text>
+      <input name="myname" placeholder='请输入奖品名称' placeholder-style="color:#D0D0D0;font-size:32rpx;" maxlength='12' bindinput='inputvalue' type="text" class='draw-prizeinp' ></input>
+    </view>
+  </view>
+</view>
+<view class='editprize'>
+  红包领取规则<text class='editprizeno'>必填</text>
+</view>
+<view class='draw-editprize'>
+    <view class='draw-prize'>
+      <text class='draw-prizetext'>红包金额</text>
+      <input type="digit" placeholder='请输入红包总金额' placeholder-style="color:#D0D0D0;font-size:32rpx;" class="draw-prizeinp" bindinput='moneyInput'></input><text class='draw-prizege'>元</text>
+    </view>
+    <view class='draw-prize'>
+      <text class='draw-prizetext'>红包份数</text>
+      <input type="digit" placeholder='请输入红包总份数' placeholder-style="color:#D0D0D0;font-size:32rpx;" class="draw-prizeinp" bindinput='moneyInput'></input><text class='draw-prizege'>个</text>
+    </view>
+    <view class='draw-prize'>
+      <text class='draw-prizetext'>红包上限</text>
+      <input type="digit" placeholder='请输入单个红包金额上限' placeholder-style="color:#D0D0D0;font-size:32rpx;" class="draw-prizeinp" bindinput='moneyInput'></input><text class='draw-prizege'>元</text>
+    </view>
+    <view class='draw-prize'>
+      <text class='draw-prizetext'>红包集字</text>
+      <input type="text" placeholder='请输入需要集齐的汉字' placeholder-style="color:#D0D0D0;font-size:32rpx;" class="draw-prizeinp" maxlength='4' bindinput='moneyInput'></input><text class='draw-prizege'></text>
+    </view>
+  </view>
+<view class='editprize'>
+  抽奖说明<text class='editprizeno'>非必填</text>
+</view>
+<view class='editprizeviar'>
+  <textarea class='editprizearea' placeholder='填写此次红包抽奖的规则' placeholder-style="color:#D0D0D0;font-size:32rpx;" >
+  </textarea>
+</view>
+<view style='height:300rpx;'></view>
+<view class='editprize-bottom'>
+  <view class='editprize-todraw'>发起新抽奖</view>
+</view>

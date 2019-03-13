@@ -1,0 +1,9 @@
+{
+  
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "集字领红包",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh":true,
+    "onReachBottomDistance":50
+}

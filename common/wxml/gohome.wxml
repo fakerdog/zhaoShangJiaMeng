@@ -1,0 +1,1 @@
+<navigator class="share-bottom" hoverClass="none" hoverStopPropagation="true" openType="switchTab" url="/pages/index/index" wx:if="{{isGoHomeBtn}}">返回首页，更多可改字表情</navigator>

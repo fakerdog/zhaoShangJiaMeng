@@ -1,0 +1,59 @@
+<view bindtap="diyTextHide" catchtouchmove="false" class="black-layer" data-do="close" style="display:{{wxss_black_layer_display}};"></view>
+<view catchtouchmove="false" class="set-wrap" style="display:{{wxss_set_wrap_display}};">
+    <scroll-view catchtouchmove="false" scrollY="true">
+        <view class="set-box set-font">
+            <label class="title">设置字体</label>
+            <image bindtap="fontTap" class="{{item.className}}" data-id="{{index}}" mode="aspectFit" src="{{item.thumb}}" wx:for="{{fontList}}" wx:key="unique"></image>
+        </view>
+        <view class="set-box set-color">
+            <label class="title">文字颜色</label>
+            <button bindtap="textColorTap" class="{{item.className}}" data-id="{{index}}" hoverClass="no" style="background-color:{{item.color}}" wx:for="{{textColorList}}" wx:key="unique"></button>
+        </view>
+        <view class="set-box set-position" wx:if="{{allowSetTextPosition}}">
+            <label class="title">文字位置</label>
+            <radio-group bindchange="textPositionChange" class="radio-group">
+                <label class="radio">
+                    <radio checked="" value="top"></radio>顶部
+        </label>
+                <label class="radio">
+                    <radio checked="" value="center"></radio>中间
+        </label>
+                <label class="radio">
+                    <radio checked="" value="bottom"></radio>底部
+        </label>
+            </radio-group>
+        </view>
+        <view class="set-box set-size" wx:if="{{allowSetTextSize}}">
+            <label class="title">文字大小</label>
+            <radio-group bindchange="textSizeChange" class="radio-group">
+                <label class="radio">
+                    <radio checked="" value="small"></radio>小字
+        </label>
+                <label class="radio">
+                    <radio checked="" value="middle"></radio>中字
+        </label>
+                <label class="radio">
+                    <radio checked="" value="large"></radio>大字
+        </label>
+            </radio-group>
+        </view>
+        <view class="set-box set-other">
+            <view>
+                <checkbox-group bindchange="textStrokeChange">
+                    <label>文字边框<checkbox checked="{{textStroke}}" value="1"></checkbox>
+                    </label>
+                </checkbox-group>
+            </view>
+            <view>
+                <checkbox-group bindchange="textShakeChange">
+                    <label>文字跳动<checkbox checked="{{textShake}}" value="1"></checkbox>
+                    </label>
+                </checkbox-group>
+            </view>
+        </view>
+    </scroll-view>
+    <icon catchtap="diyTextHide" class="close-btn" data-do="close" size="44" type="cancel"></icon>
+    <view catchtap="diyTextHide" class="submit-btn" data-do="submit">
+        <text>制作</text>
+    </view>
+</view>

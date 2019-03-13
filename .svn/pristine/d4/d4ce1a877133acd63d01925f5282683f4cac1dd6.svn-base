@@ -1,0 +1,357 @@
+// pages/bagDetail/bagDetail.js
+const server = require("../../utils/server.js");
+const util = require("../../utils/util.js");
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    bagLaunch: "",
+    showAssistModule: false,
+    askforModule: false,
+    sendModule: true,
+    restMoney: 306,
+    sponsorComp: "",
+    notcollected: true,
+    showFirstModule: false,
+    activeid: "",
+    enoughThe: false,
+    words: [],
+    description: "",
+    systemword: "颦"
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+
+  onLoad: function(options) {
+    server.getLuckyDrawHead(res => {
+      var head = res.data.head;
+      if (head) {
+        util.getRandomArrayElementsHead(head, 8, res => {
+          this.setData({
+            drawhead: res
+          })
+        })
+      }
+    })
+
+    var activeid = Number(options.activeid);
+    this.data.activeid = activeid
+    var friendopenid = options.targetid;
+    this.data.friendopenid = friendopenid;
+    var keyword = options.tapword;
+    if (!friendopenid) {
+      friendopenid = ""
+      this.setData({
+        goindex : false
+      })
+    } else {
+      this.setData({
+        goindex: true
+      })
+    }
+    //获取当前登录用户
+    server.getUserInfo(friendopenid, activeid, res => {
+      this.data.isnew = res.isnew;
+
+      var userInfo = app.globalData.userInfo;
+
+      // 获取活动的详细信息
+      server.getactiveDetail(activeid, res => {
+        var res = res.data.data;
+        this.data.activityStatus = res.status;
+        if (this.data.activityStatus) {
+          this.setData({
+            notcollected: false,
+            lingqutext: "活动已结束"
+          })
+          return;
+        } else {
+          this.setData({
+            lingqutext: "领取红包"
+          })
+        }
+
+        var words = (res.words).split(",");
+        this.setData({
+          gotMoney: res.gotMoney,
+          surplusMoney: res.surplusMoney,
+          bannerurl: res.bannerurl,
+          sponsorDescription: res.sponsorDescription,
+          activityName: res.activityName,
+          sponsorAppname: res.sponsorAppname,
+          description: res.description,
+        })
+
+        //获取用户文字的个数
+        server.getactiveUserDetail(activeid, res => {
+          var words = res.data.data.words;
+          this.setData({
+            words: words
+          })
+          
+          if (options.sharetype) {
+            var sharetype = options.sharetype;
+            // if (!this.data.showFirstModule){
+            this.setData({
+              showAssistModule: true
+            })
+            console.log(sharetype)
+            switch (sharetype) {
+              case "askfor":
+                this.setData({
+                  askforModule: true,
+                  sendModule: false,
+                  askword: keyword
+                })
+                break;
+              case "send":
+                this.setData({
+                  askforModule: false,
+                  sendModule: true,
+                  sendword: keyword
+                })
+                break;
+            }
+
+            // }
+          }
+          if (this.data.activityStatus == 0 && res.data.data.word != "") {
+            this.setData({
+              showFirstModule: true,
+              systemword: res.data.data.word
+            })
+          }
+        })
+      })
+    });
+
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+  },
+
+  toindex() {
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
+  },
+
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {},
+  //赏给你
+  accept: function() {
+    var friendopenid = this.data.friendopenid;
+    var activeid = this.data.activeid;
+    var word = this.data.askword;
+    server.giveWordApiFromMe(friendopenid, activeid, word, res => {
+      if (res.data.data == 0) {
+        this.setData({
+          enoughThe: false
+        })
+        //字数余额不足
+        wx.showModal({
+          title:"提示",
+          content: '您的字数不够了',
+          showCancel:false
+        })
+      } else {
+        //赠送
+        this.iscollected();
+        var askword = this.data.askword;
+        console.log(askword);
+        var words = this.data.words;
+        console.log(words);
+        for (var i = 0; i < words.length; i++) {
+          if (words[i].key == askword) {
+            words[i].value -= 1;
+            break;
+          }
+        }
+        this.setData({
+          words: words
+        })
+      }
+      this.setData({
+        showAssistModule: false,
+        askforModule: false
+      })
+    })
+  },
+
+  //关闭第一次弹窗
+  closeFirstMo: function() {
+    this.setData({
+      showFirstModule: false
+    })
+
+  },
+
+  //愉快收下
+  hapytake: function() {
+    var friendopenid = this.data.friendopenid;
+    var activeid = this.data.activeid;
+    var sendword = this.data.sendword;
+    var that = this;
+    server.getWordApi(friendopenid, activeid, sendword, res => {
+      switch (res.data.data) {
+        case 0:
+          wx.showModal({
+            title: '提示',
+            content: '当前字已被领取',
+            showCancel: false
+          })
+          break;
+        case -1:
+          wx.showModal({
+            title: '提示',
+            content: '服务器繁忙',
+            showCancel: false
+          })
+          break;
+        case 1:
+          that.iscollected();
+          var words = this.data.words;
+          for (var i = 0; i < words.length; i++) {
+            if (words[i].key == sendword) {
+              words[i].value += 1
+              break;
+            }
+          }
+          this.setData({
+            words: words
+          })
+
+
+      }
+    })
+
+    this.setData({
+      showAssistModule: false,
+      sendModule: false
+    })
+  },
+
+  iscollected: function() {
+    server.getactiveUserDetail(res => {
+      if (res.status == 0) {
+        this.setData({
+          notcollected: true
+        })
+      } else if (res.status == 1) {
+        this.setData({
+          notcollected: false
+        })
+      } else if (res.status == 2) {
+        this.setData({
+          notcollected: true
+        })
+      }
+    })
+  },
+  withdraw: function() {
+    server.redpacketCashForMoeny(this.data.activeid, res => {
+      switch (res.data.data) {
+        case 6: wx.showModal({
+          title: '提示',
+          content: '服务器繁忙，请稍后再试',
+          showCancel: false
+        });break;
+        case 5:
+        case 4: wx.showModal({
+          title: '提示',
+          content: '活动已经结束',
+          showCancel: false
+        });break;
+        case 3: wx.showModal({
+          title: '提示',
+          content: '您已经领过红包了，不可重复领取',
+          showCancel: false
+        }); break;
+        case 2: wx.showModal({
+          title: '提示',
+          content: '字没有集齐，无法领取',
+          showCancel: false
+        }); break;
+        case 1: wx.showModal({
+          title: '提示',
+          content: '服务器异常，请稍后再试',
+          showCancel: false
+        }); break;
+        case 0: wx.showModal({
+          title: '提示',
+          content: '领取成功，1~3个工作日会打入您的微信零钱中',
+          showCancel: false
+        }); break;
+      }
+    })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function(e) {
+    var that = this;
+    var activeid = this.data.activeid;
+    var userhasnum = e.target.dataset.tapcla;
+    var tapword = e.target.dataset.tapword;
+
+    var openid = app.globalData.openid;
+    var sharetype;
+    var title = "";
+    if (userhasnum == 0) {
+      sharetype = "askfor"
+      title = "求助！我还差一个字就能领红包了"
+    } else {
+      sharetype = "send"
+      title = "你要的东西都在这了"
+      server.giveFriApi(activeid, tapword, res => {
+        switch (res.data.data) {
+          case -1:
+            wx.showModal({
+              title: '提示',
+              content: '请求异常',
+              showCancel: false
+            })
+            break;
+          case 0:
+            wx.showModal({
+              title: '提示',
+              content: '字数不足',
+              showCancel: false
+            })
+            break;
+          case 1:
+            wx.showModal({
+              title: '提示',
+              content: '赠送成功，快去提醒你的小伙伴领取吧',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                }
+              }
+            })
+            that.iscollected();
+        }
+      })
+    }
+    return {
+      imageUrl: "",
+      title: title,
+      path: '/pages/bagDetail/bagDetail?sharetype=' + sharetype + '&tapword=' + tapword + '&activeid=' + activeid + '&targetid=' + openid
+    }
+  }
+})

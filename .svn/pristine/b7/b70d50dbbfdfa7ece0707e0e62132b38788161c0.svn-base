@@ -1,0 +1,39 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/draw/draw",
+    "pages/my/my",
+    "pages/allActives/allActives"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2D2D2D",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/common_icon_home.png",
+        "selectedIconPath": "images/common_icon_home_sel.png"
+      },
+      {
+        "pagePath": "pages/draw/draw",
+        "text": "发起抽奖",
+        "iconPath": "images/common_icon_discover.png",
+        "selectedIconPath": "images/common_icon_discover_sel.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/common_icon_person.png",
+        "selectedIconPath": "images/common_icon_person_sel.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+<!--pages/allActives/allActives.wxml-->
+<view class='zhanwei'></view>
+<view class='container'>
+    <view wx:for="{{allAcArr}}" class='item-active' wx:key="{{index}}" bindtap="tobagDetail">
+          <view class="image-wrap">
+              <image src='{{item.img}}'></image>
+          </view>
+          <view class="actdata-wrap">
+              <view class='act-name'>{{item.activeName}}</view>
+              <view class='act-count'>￥<text style='color:red;font-size:36rpx;padding:0 6rpx;'>{{item.bagAcount}}</text>元</view>
+              <view class='act-havp'>已有{{item.haspeople}}人领取</view>
+          </view>
+    </view>
+</view>

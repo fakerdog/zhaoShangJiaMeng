@@ -1,0 +1,49 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/draw/draw",
+    "pages/my/my",
+    "pages/allActives/allActives",
+    "pages/bagDetail/bagDetail",
+    "pages/cutInside/cutInside",
+    "pages/jump/jump",
+    "pages/help/help",
+    "pages/correlativeactivities/correlativeactivities",
+    "pages/gotredpacket/gotredpacket",
+    "pages/advertisement/advertisement",
+    "pages/receivebagPage/receivebagPage",
+    "pages/lauchedPage/lauchedPage"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2D2D2D",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/common_icon_home.png",
+        "selectedIconPath": "images/common_icon_home_sel.png"
+      },
+      {
+        "pagePath": "pages/jump/jump",
+        "text": "发起红包",
+        "iconPath": "images/common_icon_discover.png",
+        "selectedIconPath": "images/common_icon_discover_sel.png"
+        
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/common_icon_person.png",
+        "selectedIconPath": "images/common_icon_person_sel.png"
+      }
+    ]
+  }
+}

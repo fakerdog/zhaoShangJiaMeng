@@ -1,0 +1,13 @@
+<!--pages/allActives/allActives.wxml-->
+<view class='container'>
+    <view wx:for="{{allAcArr}}" class='item-active' wx:key="{{index}}" data-activeid="{{item.id}}" bindtap="tobagDetail">
+          <view class="image-wrap">
+              <image src='{{item.bannerurl}}'></image>
+          </view>
+          <view class="actdata-wrap">
+              <view class='act-name'>{{item.activityName}}</view>
+              <view class='act-count'>￥<text style='color:red;font-size:36rpx;padding:0 6rpx;'>{{item.totalMoney}}</text>元</view>
+              <view class='act-havp'>已有{{item.gotCount}}人领取</view>
+          </view>
+    </view>
+</view>

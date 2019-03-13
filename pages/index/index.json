@@ -1,0 +1,9 @@
+{
+  
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "招商加盟助手",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh":true,
+    "onReachBottomDistance":50
+}

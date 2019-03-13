@@ -1,0 +1,12 @@
+<view class="custom-dialog" wx:if="{{customDialog.isShow}}">
+    <view class="custom-dialog-box">
+        <view class="custom-dialog-title">{{customDialog.title?customDialog.title:'提示'}}</view>
+        <view class="custom-dialog-content">
+            <text>{{customDialog.content?customDialog.content:''}}</text>
+        </view>
+        <view class="custom-dialog-button">
+            <button catchtap="customDialogCancel" class="custom-dialog-button-cancel" hoverClass="none" plain="true" style="border-right:1px #d2d3d5 solid;" wx:if="{{customDialog.showCancel}}">{{customDialog.cancelText?customDialog.cancelText:'取消'}}</button>
+            <button catchtap="customDialogConfirm" hoverClass="none" openType="{{customDialog.openType?customDialog.openType:''}}" plain="true" sessionFrom="{{customDialog.sessionFrom?customDialog.sessionFrom:''}}" style="color:#44c728;">{{customDialog.confirmText?customDialog.confirmText:'确定'}}</button>
+        </view>
+    </view>
+</view>

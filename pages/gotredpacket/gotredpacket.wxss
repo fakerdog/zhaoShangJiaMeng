@@ -1,0 +1,38 @@
+/* pages/gotredpacket/gotredpacket.wxss */
+Page{
+  box-sizing: border-box;
+  background-color:#F0F0F0;
+}
+view{
+  font-size: 32rpx;
+  background-color: #fff;
+}
+.receiveDetail:nth-child(1){
+  margin-top: 30rpx;
+}
+.receiveDetail{
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  height: 100rpx;
+  margin-bottom: 2rpx;
+}
+.classname{
+  margin-left: 80rpx;
+  width: 280rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.avatarurl{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-left: 50rpx;
+}
+
+.top_wrap{
+  margin-top: 30rpx;
+}

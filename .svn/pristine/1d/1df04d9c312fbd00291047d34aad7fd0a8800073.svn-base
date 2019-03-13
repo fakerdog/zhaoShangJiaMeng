@@ -1,0 +1,125 @@
+<!--pages/bagDetail/bagDetail.wxml-->
+<view class="top-banner">
+  <image src='{{bannerurl}}' class="banner-image"></image>
+</view>
+<view class='activity_name'><text>{{activityName}}</text><text>红包：￥{{totalMoney}}</text></view>
+<view class='receive-person'>
+  <view wx:for="{{drawhead}}" class='receive-wrap'>
+    <image src='{{item.imgUrl}}'></image>
+  </view>
+  <view class='spot' bindtap='togoredpacket'>···</view>
+</view>
+<view class='detail-wrap'>
+  <view>已领￥{{gotMoney}}元</view>
+  <view style='margin:0 10rpx;'>|</view>
+  <view>剩余￥{{surplusMoney}}元</view>
+</view>
+<view class='sponsor' wx:if="{{sponsorComp}}">
+  <view style='flex:1'>{{sponsorAppname}}</view>
+</view>
+<view class='zhanwei'></view>
+<view class='description' wx:if="{{sponsorComp}}">{{sponsorDescription}}</view>
+<view class='zhanwei'></view>
+<view class='description-view'>{{description}}</view>
+  <button wx:if="{{goindex}}" bindtap="toindex" type='warn' style='width:80%;margin:0 auto'>领取更多红包</button>
+  <!-- <button type='primary' bindtap='again'>画图</button> -->
+
+<view class='footer-btn'>
+  <view class="word-wrap">
+    <button wx:for="{{words}}" class='{{item.hasnum>0?"text-wrap":"textMask"}}' style='position:relative' data-tapcla="{{item.value}}" data-tapword="{{item.key}}" bindgetuserinfo="showShare" open-type="getUserInfo">
+      <text>{{item.key}}</text>
+      <view class='count-card'>{{item.value}}</view>
+    </button>
+  </view>
+  <view class="clickwords">试试点击上方的汉字</view>
+  <button disabled="{{notcollected}}" class="lingqu-btn" bindgetuserinfo='withdraw' open-type='{{notcollected?"share":"getUserInfo"}}'>{{lingqutext}}</button>
+
+</view>
+
+<view style='height:240rpx'></view>
+
+<!-- 分享弹窗 -->
+<view class="mask1" wx:if="{{showShareflag}}" bindtap="hiddenshreflag">
+  <form bindsubmit="formSubmit" report-submit="{{true}}">
+    <view class="startModulec" wx:if="{{sharetype=='askfor'}}">
+      <view class="tiptext">向朋友索要</view>
+      <view class='ask-word'>{{shareword}}</view>
+      <button type="primary" class="ready" bindtap='closeShowShare' open-type="share" form-type="submit">确定</button>
+      <view class="textdec">点击确定，向好友索要”</view>
+
+    </view>
+
+    <view class="startModulec" wx:else>
+      <view class="tiptext">向朋友赠送</view>
+      <view class='ask-word'>{{shareword}}</view>
+        <button type="primary" class="ready" bindtap='closeShowShare' open-type="share">确定</button>
+      <view class="textdec">好友确认领取，赠送生效</view>
+    </view>
+  </form>
+</view>
+
+
+<!-- 第一次进入送字弹窗 -->
+<view class="mask" wx:if="{{showFirstModule}}" bindtap='hiddenFirstModule'>
+  <view class="startModule">
+    <view class="tiptext">系统送您一个字</view>
+    <view class='ask-word'>{{systemword}}</view>
+    <button type="primary" class="ready" catchtap='closeFirstMo'>愉快收下</button>
+  </view>
+</view>
+
+<!-- 助力弹窗 -->
+<view class="mask1" wx:if="{{showAssistModule}}" catchtap='hiddenAssistModule'>
+  <view class="startModulec">
+    <block wx:if="{{askforModule}}">
+      <view class='userAvatar'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="ask-title">您的好友还差这个字</view>
+      <view class='ask-word'>{{askword}}</view>
+      <button type="primary" class="ask-button" bindtap='accept' disabled='{{enoughThe}}'>赠送给他</button>
+      <view>您还有{{}}个财</view>
+    </block>
+    <block wx:if="{{sendModule}}">
+      <view class='userAvatar'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="ask-title">您的好友送了您一个</view>
+      <view class='ask-word'>{{sendword}}</view>
+      <button type="primary" class="ask-button" bindtap='hapytake'>愉快收下</button>
+    </block>
+  </view>
+</view>
+
+
+
+
+
+
+<!-- canvas -->
+<block wx:if="{{iphone}}">
+  <canvas class="drawer_content_canvas {{hiddenCanvas?'hidden-view':''}}" canvas-id="shareCanvas" mode='aspectFit'>
+  </canvas>
+</block>
+<block wx:else>
+  <canvas class="drawer_content_canvas" canvas-id="shareCanvas">
+  </canvas>
+</block>
+
+
+<!-- 弹出层 -->
+<view class="drawer_screen" catchtouchmove="true" wx:if="{{showModalStatus}}">
+</view>
+<view class="drawer_box" catchtouchmove="true" wx:if="{{showModalStatus}}">
+  <view class="drawer_content_box">
+    <view class="drawer_content">
+      <image src='{{imagePath}}' style="width:100%;height:100%">
+      </image>
+      <view class="drawer_btn_block">
+        <button class="save-img" type="primary" bindtap='saveImg'>保存图片</button>
+        <button open-type='share' type='warn' class="share-img">分享给好友</button>
+        <button bindtap='againFill'>重新填写</button>
+      </view>
+    </view>
+  </view>
+</view>

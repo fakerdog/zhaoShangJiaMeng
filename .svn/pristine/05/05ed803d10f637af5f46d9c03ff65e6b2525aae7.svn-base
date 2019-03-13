@@ -1,0 +1,77 @@
+/* pages/my/my.wxss */
+view,text{
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+.zhanwei{
+  width: 100vh;
+  height: 24rpx;
+  background-color: #F0F0F0;
+}
+.namebox {
+  height: 60rpx;
+  margin-top: 30rpx;
+  padding-bottom: 70rpx;
+  padding:0 20rpx;
+}
+.nameicon {
+  width: 18rpx;
+  height: 32rpx;
+  float: right;
+  padding-top: 8rpx;
+  padding-right: 5rpx;
+}
+.name {
+  font-size: 33rpx;
+  color: #2f2f2f;
+  float: left;
+}
+
+.nametext {
+  font-size: 33rpx;
+  color: #828282;
+  float: right;
+  padding-right: 25rpx;
+  text-align: right;
+}
+.userAvatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.line1{
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F0F0F0;
+  padding: 0 20rpx;
+}
+.bianse{
+  color: rgba(0, 0, 0,0.7);
+}
+.username{
+  font-size: 32rpx;
+  margin-left: 10rpx;
+  flex: 1;
+}
+.rest_bag{
+  font-size: 32rpx;
+}
+.hongbaolan{
+  display: flex;
+  height: 96rpx;
+  padding: 0 20rpx;
+  margin: 40rpx 0rpx;
+}
+.hongbaolan view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.midle-view{
+  border-left: 2px solid #F0F0F0;
+  border-right: 2px solid #F0F0F0;
+}

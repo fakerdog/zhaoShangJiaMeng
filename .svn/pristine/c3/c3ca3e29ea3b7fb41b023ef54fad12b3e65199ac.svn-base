@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<!-- 头部 -->
+<view class='oneday'>
+  <view class='oneday-welfare'>
+    每日福利
+  </view>
+  <view class='oneday-help'>
+    <view>帮助 |</view>  <button open-type='share'>分享</button> 
+  </view>
+</view>
+
+<!-- 中间部分 -->
+<view wx:for="{{friAct}}" class='activity' wx:key="{{index}}" bindtap='tobagDetail'>
+  <image class="activity-image-food" src='{{item.img}}'></image>
+  <view class='activity-synopsis'>
+    <view class="activity-sponsor">
+      {{item.activeName}}
+    </view>
+    <view class='activity-prize'>
+      {{item.prizeName}}
+    </view>
+    <view class='activity-time'>
+      {{item.time}}
+    </view>
+  </view>
+</view>
+
+<view class='oneday-welfare'>
+  自助福利
+</view>
+
+<view class='container'>
+  <view wx:for="{{allAcArr}}" class='item-active' wx:key="{{index}}" bindtap='tobagDetail'>
+    <view class="image-wrap">
+      <image src='{{item.img}}'></image>
+    </view>
+    <view class="actdata-wrap">
+      <view class='act-name'>{{item.activeName}}</view>
+      <view class='act-count'>￥
+        <text style='color:red;font-size:36rpx;padding:0 6rpx;'>{{item.bagAcount}}</text>元</view>
+      <view class='act-havp'>已有{{item.haspeople}}人领取</view>
+    </view>
+  </view>
+  <view class='look-all' bindtap='toAllActivity'>
+    查看全部 ＞
+  </view>
+</view>
+
+<view class='contactcustomer'>
+  <button open-type='contact'> 联系客服 ＞</button>
+</view>

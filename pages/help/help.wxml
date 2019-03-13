@@ -1,0 +1,21 @@
+<!--pages/help/help.wxml-->
+<view class="helpview">
+  <view class="textview" style='text-align:center;font-weight:bold;font-size:36rpx;'>红包大作战说明</view>
+  <view class="textview">您可以参加每一个红包活动，集齐指定字领取丰厚红包！</view>
+  <view class="textview">参加新活动系统随机赠送一个字，邀请新用户系统随机赠送一个字，好友直接可以互相赠送字</view>
+  <view class="textview"></view>
+  <view class="textview" style='font-weight:bold;'>领取规则：</view>
+  <view class="textview">依照平台规则，在任一活动的活动进行期间，集齐字，即可领取丰厚红包，每一活动每人限领一次</view>
+  <view class="textview">任意活动获得红包会及时到账，先到先得，送完为止</view>
+
+  <view class="textview">
+    <button type='primary' class='mystep-btn' bindtap='toindex'>赶紧参加活动</button>
+    <button type='warn' open-type='share' class='mystep-btn'>分享好友一起领红包</button>
+  </view>
+
+  <view class="textview-desc" style='margin-top:80rpx;'>红包大作战，免费来领钱</view>
+  <view class="textview-desc">—— 红包大作战</view>
+  <view class="textview-desc" style='font-size:24rpx;'>可以直接领红包的小程序</view>
+</view>
+
+

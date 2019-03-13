@@ -1,0 +1,19 @@
+/* pages/gotredpacket/gotredpacket.wxss */
+view{
+  font-size: 32rpx;
+}
+.receiveDetail{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.avatarurl{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.bottom_line{
+  width: 100vw;
+  border-bottom: 1px solid #f0f0f0;
+  margin-top: 10rpx;
+}

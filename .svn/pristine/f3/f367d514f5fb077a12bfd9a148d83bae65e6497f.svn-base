@@ -1,0 +1,52 @@
+//index.js
+//获取应用实例
+const server = require("../../utils/server.js");
+const app = getApp()
+
+Page({
+  data: {
+    motto: 'Hello World',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+ 
+  onLoad: function () {
+    server.getFristActiveData(res => {
+      this.setData({
+        friAct: res.data
+      })
+    })
+    server.getAllActiveData(res => {
+      this.setData({
+        allAcArr: res.data
+      })
+    })
+    //分享
+    wx.showShareMenu({
+      withShareTicket: false
+    });
+  },
+  //跳转到全部活动列表
+  toAllActivity :function(){
+    wx.navigateTo({
+      url: '/pages/allActives/allActives'
+    })
+  },
+  getUserInfo: function(e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+
+  //用户分享
+  onShareAppMessage: function () {
+    return {
+      title: '红包大作战',
+      path: '/pages/index/index'
+    }
+  },
+})

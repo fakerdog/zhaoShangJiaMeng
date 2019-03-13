@@ -1,0 +1,71 @@
+<!--pages/bagDetail/bagDetail.wxml-->
+<view class="top-banner">
+  <image src='{{bannerurl}}' class="banner-image"></image>
+</view>
+<view style='font-weight:700;padding-left:20rpx;'>{{activityName}}</view>
+<view class='receive-person'>
+  <view wx:for="{{drawhead}}" class='receive-wrap'>
+    <image src='{{item.imgUrl}}'></image>
+  </view>
+</view>
+<view class='detail-wrap'>
+  <view>已领￥{{gotMoney}}元</view>
+  <view style='margin:0 10rpx;'>|</view>
+  <view>剩余￥{{surplusMoney}}元</view>
+</view>
+<view class='sponsor' wx:if="{{sponsorComp}}">
+  <view style='flex:1'>{{sponsorAppname}}</view>
+</view>
+<view class='zhanwei'></view>
+<view class='description' wx:if="{{sponsorComp}}">{{sponsorDescription}}</view>
+<view class='zhanwei'></view>
+<view class='description-view'>{{description}}</view>
+
+<view class='footer-btn'>
+<view class="word-wrap">
+  <button wx:for="{{words}}" class='{{item.hasnum>0?"text-wrap":"textMask"}}' style='position:relative' data-tapcla="{{item.value}}" data-tapword="{{item.key}}" open-type="share">
+    <text>{{item.key}}</text>
+    <view class='count-card'>{{item.value}}</view>
+  </button>
+</view>
+  <button disabled="{{notcollected}}" class="lingqu-btn" bindtap='withdraw'>{{lingqutext}}</button>
+</view>
+<view style='height:150rpx'></view>
+
+
+<!-- 第一次进入送字弹窗 -->
+<view class="mask" wx:if="{{showFirstModule}}">
+  <view class="startModule">
+    <view class="tiptext">系统送您一个字</view>
+      <view class='ask-word'>{{systemword}}</view>
+    <button type="primary" class="ready" catchtap='closeFirstMo'>愉快收下</button>
+    <view class='closeFirstModule' catchtap='closeFirstMo'>X</view>
+  </view>
+</view>
+
+<!-- 助力弹窗 -->
+<view class="mask1" wx:if="{{showAssistModule}}">
+  <view class="startModulec">
+    <block wx:if="{{askforModule}}">
+      <view class='userAvatar'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="ask-title">您的好友想让你送他</view>
+      <view class='ask-word'>{{askword}}</view>
+      <button type="primary" class="ask-button" bindtap='accept' disabled='{{enoughThe}}'>赏给他</button>
+      <view class='closeFirstModule' catchtap='closeAskModule'>X</view>
+    </block>
+    <block wx:if="{{sendModule}}">
+      <view class='userAvatar'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="ask-title">您的好友送了您一张</view>
+      <view class='ask-word'>{{sendword}}</view>
+      <button type="primary" class="ask-button" bindtap='hapytake'>愉快收下</button>
+    </block>
+  </view>
+</view>
+
+<view class="home-view">
+  <image wx:if="{{goindex}}" src='../../images/common_icon_home_sel.png' style='width:100%;height:100%;' bindtap="toindex"></image>
+</view>
